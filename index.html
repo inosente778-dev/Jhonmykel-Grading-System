@@ -562,6 +562,13 @@ tbody tr:hover {
         flex: 1;
     }
 }
+    .action-cell{
+    display: flex;
+    gap: 8px;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+}
 
 </style>
 </head>
@@ -619,7 +626,7 @@ tbody tr:hover {
     <td id="qOut">0</td>
 
     <!-- ACTION COLUMN FIX -->
-    <td>
+      <td class="action-cell">
         <button class="edit-btn">✏️ Edit</button>
         <button class="delete-btn">🗑️ Delete</button>
     </td>
@@ -628,7 +635,7 @@ tbody tr:hover {
     <td>Laboratory (30%)</td>
     <td><input type="number" id="lab" oninput="computeGrade()"></td>
     <td id="lOut">0</td>
-    <td>
+      <td class="action-cell">
         <button class="edit-btn">✏️ Edit</button>
         <button class="delete-btn">🗑️ Delete</button>
     </td>
@@ -637,7 +644,7 @@ tbody tr:hover {
     <td>Assignment (10%)</td>
     <td><input type="number" id="assign" oninput="computeGrade()"></td>
     <td id="aOut">0</td>
-    <td>
+       <td class="action-cell">
         <button class="edit-btn">✏️ Edit</button>
         <button class="delete-btn">🗑️ Delete</button>
     </td>
@@ -646,7 +653,7 @@ tbody tr:hover {
     <td>Attendance (10%)</td>
     <td><input type="number" id="attend" oninput="computeGrade()"></td>
     <td id="atOut">0</td>
-    <td>
+      <td class="action-cell">
         <button class="edit-btn">✏️ Edit</button>
         <button class="delete-btn">🗑️ Delete</button>
     </td>
@@ -655,7 +662,7 @@ tbody tr:hover {
     <td>Major Exam (30%)</td>
     <td><input type="number" id="exam" oninput="computeGrade()"></td>
     <td id="eOut">0</td>
-    <td>
+       <td class="action-cell">
         <button class="edit-btn">✏️ Edit</button>
         <button class="delete-btn">🗑️ Delete</button>
     </td>
@@ -765,22 +772,23 @@ if(final >= 75){
 }
 
 }
-
 function addSubject(){
     let subject = prompt("Enter Subject Name:");
     if(subject && subject.trim()){
         let gradesBody = document.getElementById("gradesBody");
+
         let row = document.createElement('tr');
         row.innerHTML = `
-        <td>${subject.trim()}</td>
-        <td><input type="number" class="grade" min="0" max="100" oninput="calculateAverage()"></td>
-        <td>
-            <button class="edit-btn" onclick="editSubject(this)">✏️ Edit</button>
-            <button class="delete-btn" onclick="deleteSubject(this)">🗑️ Delete</button>
-        </td>
+            <td>${subject.trim()}</td>
+            <td><input type="number" class="grade" min="0" max="100" oninput="calculateAverage()"></td>
+            <td>0</td>
+            <td class="action-cell">
+                <button class="edit-btn" onclick="editSubject(this)">✏️ Edit</button>
+                <button class="delete-btn" onclick="deleteSubject(this)">🗑️ Delete</button>
+            </td>
         `;
+
         gradesBody.appendChild(row);
-        calculateAverage();
     }
 }
 
