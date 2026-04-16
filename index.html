@@ -614,41 +614,41 @@ tbody tr:hover {
             </thead>
             <tbody id="gradesBody">
                 <tr>
-                    <td>SA 301</td>
-                    <td><input type="number" class="grade" min="0" max="100" oninput="calculateAverage()"></td>
-                    <td>
+                   <td>Quiz (20%)</td>
+<td><input type="number" id="quiz" oninput="computeGrade()"></td>
+<td id="qOut">0</td>
                         <button class="edit-btn" onclick="editSubject(this)">✏️ Edit</button>
                         <button class="delete-btn" onclick="deleteSubject(this)">🗑️ Delete</button>
                     </td>
                 </tr>
                 <tr>
-                    <td>IT ELECT 4</td>
-                    <td><input type="number" class="grade" min="0" max="100" oninput="calculateAverage()"></td>
-                    <td>
+                  <td>Laboratory (30%)</td>
+<td><input type="number" id="lab" oninput="computeGrade()"></td>
+<td id="lOut">0</td>
                         <button class="edit-btn" onclick="editSubject(this)">✏️ Edit</button>
                         <button class="delete-btn" onclick="deleteSubject(this)">🗑️ Delete</button>
                     </td>
                 </tr>
                 <tr>
-                    <td>IAS 302</td>
-                    <td><input type="number" class="grade" min="0" max="100" oninput="calculateAverage()"></td>
-                    <td>
+                   <td>Assignment (10%)</td>
+<td><input type="number" id="assign" oninput="computeGrade()"></td>
+<td id="aOut">0</td>
                         <button class="edit-btn" onclick="editSubject(this)">✏️ Edit</button>
                         <button class="delete-btn" onclick="deleteSubject(this)">🗑️ Delete</button>
                     </td>
                 </tr>
                 <tr>
-                    <td>IT ELECT 3</td>
-                    <td><input type="number" class="grade" min="0" max="100" oninput="calculateAverage()"></td>
-                    <td>
+                  <td>Attendance (10%)</td>
+<td><input type="number" id="attend" oninput="computeGrade()"></td>
+<td id="atOut">0</td>
                         <button class="edit-btn" onclick="editSubject(this)">✏️ Edit</button>
                         <button class="delete-btn" onclick="deleteSubject(this)">🗑️ Delete</button>
                     </td>
                 </tr>
                 <tr>
-                    <td>CAPSTONE 1</td>
-                    <td><input type="number" class="grade" min="0" max="100" oninput="calculateAverage()"></td>
-                    <td>
+                  <td>Major Exam (30%)</td>
+<td><input type="number" id="exam" oninput="computeGrade()"></td>
+<td id="eOut">0</td>
                         <button class="edit-btn" onclick="editSubject(this)">✏️ Edit</button>
                         <button class="delete-btn" onclick="deleteSubject(this)">🗑️ Delete</button>
                     </td>
@@ -718,38 +718,45 @@ document.getElementById("studentName").addEventListener("input", function() {
     }
 });
 
-function calculateAverage(){
-    let grades = document.querySelectorAll(".grade");
-    let total = 0;
-    let count = 0;
+function computeGrade(){
 
-    grades.forEach(g => {
-        let val = parseFloat(g.value);
-        if(!isNaN(val) && g.value !== ""){
-            total += val;
-            count++;
-        }
-    });
+let quiz = parseFloat(document.getElementById("quiz").value) || 0;
+let lab = parseFloat(document.getElementById("lab").value) || 0;
+let assign = parseFloat(document.getElementById("assign").value) || 0;
+let attend = parseFloat(document.getElementById("attend").value) || 0;
+let exam = parseFloat(document.getElementById("exam").value) || 0;
 
-    let avg = count > 0 ? (total / count).toFixed(2) : 0;
-    document.getElementById("average").innerText = avg;
+// WEIGHTED COMPUTATION
+let q = quiz * 0.20;
+let l = lab * 0.30;
+let a = assign * 0.10;
+let at = attend * 0.10;
+let e = exam * 0.30;
 
-    // Calculate Remarks
-    let remarksEl = document.getElementById("remarks");
-    if(count > 0){
-        if(avg >= 75){
-            remarksEl.innerText = "✅ PASSED";
-            remarksEl.classList.remove("failed");
-            remarksEl.classList.add("passed");
-        } else {
-            remarksEl.innerText = "❌ FAILED";
-            remarksEl.classList.remove("passed");
-            remarksEl.classList.add("failed");
-        }
-    } else {
-        remarksEl.innerText = "";
-        remarksEl.classList.remove("passed", "failed");
-    }
+// SHOW EACH CONTRIBUTION
+document.getElementById("qOut").innerText = q.toFixed(2);
+document.getElementById("lOut").innerText = l.toFixed(2);
+document.getElementById("aOut").innerText = a.toFixed(2);
+document.getElementById("atOut").innerText = at.toFixed(2);
+document.getElementById("eOut").innerText = e.toFixed(2);
+
+// FINAL GRADE
+let final = q + l + a + at + e;
+
+// DISPLAY IN RECORD SECTION
+document.getElementById("average").innerText = final.toFixed(2);
+
+// REMARKS
+let remarks = document.getElementById("remarks");
+
+if(final >= 75){
+    remarks.innerText = "✅ PASSED ";
+    remarks.style.color = "lime";
+}else{
+    remarks.innerText = "❌ FAILED";
+    remarks.style.color = "red";
+}
+
 }
 
 function addSubject(){
