@@ -607,52 +607,59 @@ tbody tr:hover {
         <table id="gradeTable">
             <thead>
                 <tr>
-                    <th>Subject</th>
+                    <th>Category</th>
                     <th>Grade (0-100)</th>
-                    <th>Action</th>
+                    <th>Equivalent</th>
                 </tr>
             </thead>
             <tbody id="gradesBody">
-                <tr>
-                   <td>Quiz (20%)</td>
-<td><input type="number" id="quiz" oninput="computeGrade()"></td>
-<td id="qOut">0</td>
-                        <button class="edit-btn" onclick="editSubject(this)">✏️ Edit</button>
-                        <button class="delete-btn" onclick="deleteSubject(this)">🗑️ Delete</button>
-                    </td>
-                </tr>
-                <tr>
-                  <td>Laboratory (30%)</td>
-<td><input type="number" id="lab" oninput="computeGrade()"></td>
-<td id="lOut">0</td>
-                        <button class="edit-btn" onclick="editSubject(this)">✏️ Edit</button>
-                        <button class="delete-btn" onclick="deleteSubject(this)">🗑️ Delete</button>
-                    </td>
-                </tr>
-                <tr>
-                   <td>Assignment (10%)</td>
-<td><input type="number" id="assign" oninput="computeGrade()"></td>
-<td id="aOut">0</td>
-                        <button class="edit-btn" onclick="editSubject(this)">✏️ Edit</button>
-                        <button class="delete-btn" onclick="deleteSubject(this)">🗑️ Delete</button>
-                    </td>
-                </tr>
-                <tr>
-                  <td>Attendance (10%)</td>
-<td><input type="number" id="attend" oninput="computeGrade()"></td>
-<td id="atOut">0</td>
-                        <button class="edit-btn" onclick="editSubject(this)">✏️ Edit</button>
-                        <button class="delete-btn" onclick="deleteSubject(this)">🗑️ Delete</button>
-                    </td>
-                </tr>
-                <tr>
-                  <td>Major Exam (30%)</td>
-<td><input type="number" id="exam" oninput="computeGrade()"></td>
-<td id="eOut">0</td>
-                        <button class="edit-btn" onclick="editSubject(this)">✏️ Edit</button>
-                        <button class="delete-btn" onclick="deleteSubject(this)">🗑️ Delete</button>
-                    </td>
-                </tr>
+     <tr>
+    <td>Quiz (20%)</td>
+    <td><input type="number" id="quiz" oninput="computeGrade()"></td>
+    <td id="qOut">0</td>
+
+    <!-- ACTION COLUMN FIX -->
+    <td>
+        <button class="edit-btn">✏️ Edit</button>
+        <button class="delete-btn">🗑️ Delete</button>
+    </td>
+</tr>
+        <tr>
+    <td>Laboratory (30%)</td>
+    <td><input type="number" id="lab" oninput="computeGrade()"></td>
+    <td id="lOut">0</td>
+    <td>
+        <button class="edit-btn">✏️ Edit</button>
+        <button class="delete-btn">🗑️ Delete</button>
+    </td>
+</tr>
+   <tr>
+    <td>Assignment (10%)</td>
+    <td><input type="number" id="assign" oninput="computeGrade()"></td>
+    <td id="aOut">0</td>
+    <td>
+        <button class="edit-btn">✏️ Edit</button>
+        <button class="delete-btn">🗑️ Delete</button>
+    </td>
+</tr>
+      <tr>
+    <td>Attendance (10%)</td>
+    <td><input type="number" id="attend" oninput="computeGrade()"></td>
+    <td id="atOut">0</td>
+    <td>
+        <button class="edit-btn">✏️ Edit</button>
+        <button class="delete-btn">🗑️ Delete</button>
+    </td>
+</tr>
+<tr>
+    <td>Major Exam (30%)</td>
+    <td><input type="number" id="exam" oninput="computeGrade()"></td>
+    <td id="eOut">0</td>
+    <td>
+        <button class="edit-btn">✏️ Edit</button>
+        <button class="delete-btn">🗑️ Delete</button>
+    </td>
+</tr>
             </tbody>
         </table>
 
