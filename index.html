@@ -608,6 +608,102 @@ tbody tr:hover {
                 <button class="add-btn" onclick="addSubject()">➕ Add Subject</button>
             </div>
         </div>
+        <!-- Grade Analysis Section -->
+<div class="form-section" style="margin-top:20px;">
+    <h2>📊 Grade Analysis (Checked Items Only)</h2>
+
+    <!-- QUIZ TABLE -->
+    <h3>📝 Quizzes</h3>
+    <table>
+        <tr>
+            <th>Include</th>
+            <th>Quiz</th>
+            <th>Score</th>
+        </tr>
+        <tr>
+            <td><input type="checkbox" class="quiz-check" onchange="computeCategoryTotals()"></td>
+            <td>Q1</td>
+            <td><input type="number" class="quiz-input" oninput="computeCategoryTotals()"></td>
+        </tr>
+        <tr>
+            <td><input type="checkbox" class="quiz-check" onchange="computeCategoryTotals()"></td>
+            <td>Q2</td>
+            <td><input type="number" class="quiz-input" oninput="computeCategoryTotals()"></td>
+        </tr>
+        <tr>
+            <td><input type="checkbox" class="quiz-check" onchange="computeCategoryTotals()"></td>
+            <td>Q3</td>
+            <td><input type="number" class="quiz-input" oninput="computeCategoryTotals()"></td>
+        </tr>
+        <tr>
+            <td colspan="2"><strong>Total Quiz</strong></td>
+            <td id="quizTotal">0</td>
+        </tr>
+    </table>
+
+    <br>
+
+    <!-- LABORATORY TABLE -->
+    <h3>🧪 Laboratory</h3>
+    <table>
+        <tr>
+            <th>Include</th>
+            <th>Lab</th>
+            <th>Score</th>
+        </tr>
+        <tr>
+            <td><input type="checkbox" class="lab-check" onchange="computeCategoryTotals()"></td>
+            <td>L1</td>
+            <td><input type="number" class="lab-input" oninput="computeCategoryTotals()"></td>
+        </tr>
+        <tr>
+            <td><input type="checkbox" class="lab-check" onchange="computeCategoryTotals()"></td>
+            <td>L2</td>
+            <td><input type="number" class="lab-input" oninput="computeCategoryTotals()"></td>
+        </tr>
+        <tr>
+            <td><input type="checkbox" class="lab-check" onchange="computeCategoryTotals()"></td>
+            <td>L3</td>
+            <td><input type="number" class="lab-input" oninput="computeCategoryTotals()"></td>
+        </tr>
+        <tr>
+            <td colspan="2"><strong>Total Lab</strong></td>
+            <td id="labTotal">0</td>
+        </tr>
+    </table>
+
+    <br>
+
+    <!-- ASSIGNMENT TABLE -->
+    <h3>📄 Assignment</h3>
+    <table>
+        <tr>
+            <th>Include</th>
+            <th>Assignment</th>
+            <th>Score</th>
+        </tr>
+        <tr>
+            <td><input type="checkbox" class="assign-check" onchange="computeCategoryTotals()"></td>
+            <td>A1</td>
+            <td><input type="number" class="assign-input" oninput="computeCategoryTotals()"></td>
+        </tr>
+        <tr>
+            <td><input type="checkbox" class="assign-check" onchange="computeCategoryTotals()"></td>
+            <td>A2</td>
+            <td><input type="number" class="assign-input" oninput="computeCategoryTotals()"></td>
+        </tr>
+        <tr>
+            <td><input type="checkbox" class="assign-check" onchange="computeCategoryTotals()"></td>
+            <td>A3</td>
+            <td><input type="number" class="assign-input" oninput="computeCategoryTotals()"></td>
+        </tr>
+        <tr>
+            <td colspan="2"><strong>Total Assignment</strong></td>
+            <td id="assignTotal">0</td>
+        </tr>
+        
+    </table>
+</div>
 
         <!-- Grades Table -->
         <h2 class="section-title">📚 Subject Grades</h2>
@@ -930,7 +1026,64 @@ function viewGrades(id){
 function closeModal(){
     document.getElementById("viewModal").style.display = "none";
 }
+function computeCategoryTotals(){
 
+    // QUIZ
+    let quizInputs = document.querySelectorAll(".quiz-input");
+    let quizChecks = document.querySelectorAll(".quiz-check");
+    let quizTotal = 0;
+
+    quizInputs.forEach((input, i) => {
+        if(quizChecks[i].checked){
+            quizTotal += parseFloat(input.value) || 0;
+        }
+    });
+
+    document.getElementById("quizTotal").innerText = quizTotal.toFixed(2);
+
+    // AUTO PUSH TO QUIZ GRADE
+    document.getElementById("quiz").value = quizTotal;
+
+
+    // LAB
+    let labInputs = document.querySelectorAll(".lab-input");
+    let labChecks = document.querySelectorAll(".lab-check");
+    let labTotal = 0;
+
+    labInputs.forEach((input, i) => {
+        if(labChecks[i].checked){
+            labTotal += parseFloat(input.value) || 0;
+        }
+    });
+
+    document.getElementById("labTotal").innerText = labTotal.toFixed(2);
+
+    // AUTO PUSH TO LAB GRADE
+    document.getElementById("lab").value = labTotal;
+
+
+    // ASSIGNMENT
+    let assignInputs = document.querySelectorAll(".assign-input");
+    let assignChecks = document.querySelectorAll(".assign-check");
+    let assignTotal = 0;
+
+    assignInputs.forEach((input, i) => {
+        if(assignChecks[i].checked){
+            assignTotal += parseFloat(input.value) || 0;
+        }
+    });
+
+    document.getElementById("assignTotal").innerText = assignTotal.toFixed(2);
+
+    // AUTO PUSH TO ASSIGNMENT GRADE
+    document.getElementById("assign").value = assignTotal;
+document.getElementById("quiz").value
+document.getElementById("lab").value
+document.getElementById("assign").value
+
+    // NOW RE-COMPUTE FINAL GRADE AUTOMATICALLY
+    computeGrade();
+}
 </script>
 
 </body>
